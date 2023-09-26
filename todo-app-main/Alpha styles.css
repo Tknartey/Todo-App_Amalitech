@@ -82,7 +82,7 @@ body.light{
   transform: translate(-50%); 
   top: 30%;
   left: 50%;
-   
+  margin-top: -8rem;
 }
 .todoheader{
   width: 100%;
@@ -329,16 +329,24 @@ display: flex;
   transition: .5s ease;
   color: var(--fontColor);
 }
-.drag{
-  margin-top:80px;
+.Drag{
+  margin-top:17rem;
   margin-bottom: 30px;
   display: flex;
   flex-direction: column;
   width:100%;
   justify-content: center;
   align-items: center;
-  color: var(--fontColorGray);  
+  color: var(--fontColorGray);
 }
+
+/* .drag-over::after {
+  background-image: linear-gradient(
+    315deg,
+    var(--violet) 0%,
+    var(--blue) 100%
+  );
+} */
 
 @media screen and (max-width:768px){
   .innerContainer{
@@ -418,324 +426,3 @@ display: flex;
     transition: .2s ease-in-out;
     top:0;    opacity: 1;
 }
-
-/* 
-//Soft-reset styles of input
-input {
-  border: none;
-  background-image: none;
-  background-color: transparent;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-  width: -webkit-fill-available;
-}
-input:focus-visible {
-  outline: none;
-}
-input::placeholder {
-  color: var(--light-task-done);
-}
-p {
-  margin-block-start: 0em;
-  margin-block-end: 0em;
-}
-
-ul {
-  display: block;
-  list-style-type: none;
-  margin-block-start: 0;
-  margin-block-end: 0;
-  padding-inline-start: 0;
-}
-li> input[type="text"]{
-  padding: 0.25em;
-  outline:var(--violet) solid;
-}
-
-// Auxiliar classes
-.hidden {
-  display: none !important;
-}
-.sr-only{
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  display: none;
-  overflow: visible;
-  clip: auto;
-  white-space: normal;
-}
-//tructure of the website without the elements those will change in dark mode
-body {
-  margin: 0px 0px;
-  height: auto;
-  display:flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-input[type=checkbox] {
-  width: 20px;
-  height: 20px;
-  border-radius: 100%;
-  appearance: unset;
-  border: 1px solid var(--divider);
-  position: relative;
-  cursor: pointer;
-}
-input[type=checkbox]:checked {
-  border: 0px;
-  background: linear-gradient(315deg,var(--violet) 0%, var(--blue) 100%);
-}
-input[type=checkbox]:checked:after {
-  content: "";
-  display: block;
-  position: absolute;
-  left: 2px;
-  top: 4px;
-  width: 15px;
-  height: 15px;
-  background: url(../images/icon-check.svg) no-repeat;
-  background-size: contain;
-}
-
-#background{
-  position: absolute;
-  background: url(../images/bg-desktop-light.jpg) no-repeat;
-  background-size: cover;
-  height: 50vh;
-  width: 100%;
-}
-
-nav {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-  align-items: center;
-}
-#btn-dark-mode{
-  width: 26px;
-  height: 26px;
-  background:url(../images/icon-moon.svg) no-repeat;
-  border: 0;
-  position: relative;
-  cursor: pointer;
-}
-
-
-h1 {
-  cursor: default;
-  font-weight: bold;
-  font-size: 2.5em;
-  color: var(--white);
-  text-transform: uppercase;
-  letter-spacing: 0.3em;
-}
-
-.content {
-  position: relative;
-  top: 5vh;
-  display:flex;
-  flex-direction: column;
-  gap:1em;
-  width: 65%;
-  z-index: 1;
-
-}
-
-.task,
-.tools,.text-input {
-  display: flex;
-  position: relative;
-  padding: 20px;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 0.5rem;
-}
-.style-list,.text-input {
-  background: var(--white);
-  border-radius: 5px;
-}
-.style-list{
-  -webkit-box-shadow: 0px 6px 16px -2px var(--light-task-done);
-  box-shadow: 0px 6px 16px -2px var(--light-task-done);
-}
-.task::after {
-  content: "";
-  position: absolute;
-  height: 1px;
-  width: 100%;
-  left: 0;
-  bottom: 0;
-  background: var(--divider);
-}
-.drag-over::after {
-  background-image: linear-gradient(
-    315deg,
-    var(--violet) 0%,
-    var(--blue) 100%
-  );
-}
-.touch {
-  position: fixed !important;
-  margin: 0 !important;
-  z-index: 9999 !important;
-  background: var(--white);
-  opacity: 0.8;
-}
-
-.task:hover button {
-  visibility: visible;
-}
-.task img {
-  width: 18px;
-}
-.task button {
-  visibility: hidden;
-  background: none;
-  width: min-content;
-  border: 0;
-  cursor: pointer;
-}
-.task > p:hover {
-  cursor: move;
-}
-
-.task-done {
-  color: var(--light-task-done);
-  text-decoration: line-through;
-}
-
-li > label{
-  width: -webkit-fill-available;
-  width: -moz-fill-available;
-  flex-shrink: 20;
-}
-.tools,
-.pages {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: baseline;
-}
-.tools p {
-  color: var(--light-task-done));
-  padding: 0 10px;
-  cursor: pointer;
-}
-#itemsLeft {
-  cursor: default;
-}
-.pages > p,
-p#clear {
-  transition: 500ms;
-}
-body .active ,.pages > p:hover,
-p#clear:hover{
-  color: var(--active-state);
-  position: relative;
-}
-.active::after {
-  content: "";
-  position: absolute;
-  bottom: -50%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 20px;
-  height: 5px;
-  border-radius: 5px;
-  background-image: linear-gradient(
-    315deg,
-    var(--violet) 0%,
-    var(--blue) 100%
-  );
-}
-.attribution {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-.attribution p,
-.info {
-  padding-bottom: 0.75em;
-  text-align: center;
-}
-.attribution > p > a {
-  color: rgb(31, 106, 150);
-}
-.attribution > p > a:hover {
-  color: rgb(153, 78, 190);
-}
-
-// ?Style for dark-mode 
-.dark-mode {
-  background: var(--bg-dark);
-}
-body.dark-mode{
-  #background{
-    background: url(../images/bg-desktop-dark.jpg) var(--bg-dark) no-repeat;
-    background-size: cover;
-  }
-  #btn-dark-mode{
-    background:url(../images/icon-sun.svg) no-repeat ;
-  }
-  p {
-    color: var(--divider);
-  }
-
-  input[type=checkbox] {
-    border-color: var(--active-state);
-  }
-  .style-list {
-    background: var(--content-bg-dark);
-   -webkit-box-shadow: 0px 6px 16px 2px var(--bg-dark);
-    box-shadow: 0px 6px 16px 2px var(--bg-dark);
-  }
-  .task-done  {
-    color: var(--active-state);
-  }
-
-  .text-input {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    background: var(--content-bg-dark);
-  }
-  input::placeholder, .tools p ,
-  .attribution p,.info > p{
-    color: var(--active-state);
-  }
-  input, .pages > p:hover,
-   p#clear:hover,.list, .tools .active {
-    color: var(--white);
-  }
-  //Divider
-  .task::after {
-    content: "";
-    position: absolute;
-    height: 1px;
-    width: 100%;
-    bottom: 0;
-    background: var(--active-state);
-  }
-  .drag-over::after {
-    background-image: linear-gradient(
-      315deg,
-      var(--violet) 0%,
-      var(--blue) 100%
-    );
-  }
-  .touch {
-    background: var(--content-bg-dark);
-  }
-}
-#mobile-pagebar{
-  display: none;
-  position: static;
-  overflow: visible;
-  clip: auto;
-  white-space: normal;
-} */
