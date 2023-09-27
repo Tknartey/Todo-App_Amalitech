@@ -174,50 +174,50 @@ let dragindex=0;
 let dropindex=0;
 let clone="";
 
-function setupDragAndDrop() {
-  const listItems = document.querySelectorAll('.list-infos');
+// function setupDragAndDrop() {
+//   const listItems = document.querySelectorAll('.list-infos');
 
-  let draggedItem = null;
+//   let draggedItem = null;
 
-  listItems.forEach((item) => {
-    item.setAttribute('draggable', true);
+//   listItems.forEach((item) => {
+//     item.setAttribute('draggable', true);
 
-    item.addEventListener('dragstart', (event) => {
-      draggedItem = event.currentTarget;
-      event.dataTransfer.effectAllowed = 'move';
-      event.dataTransfer.setData('text/html', draggedItem);
-    });
+//     item.addEventListener('dragstart', (event) => {
+//       draggedItem = event.currentTarget;
+//       event.dataTransfer.effectAllowed = 'move';
+//       event.dataTransfer.setData('text/html', draggedItem);
+//     });
 
-    item.addEventListener('dragover', (event) => {
-      event.preventDefault();
-      event.dataTransfer.dropEffect = 'move';
-    });
+//     item.addEventListener('dragover', (event) => {
+//       event.preventDefault();
+//       event.dataTransfer.dropEffect = 'move';
+//     });
 
-    item.addEventListener('drop', (event) => {
-      event.preventDefault();
-      const droppedItem = event.currentTarget;
-      const parent = droppedItem.parentNode;
+//     item.addEventListener('drop', (event) => {
+//       event.preventDefault();
+//       const droppedItem = event.currentTarget;
+//       const parent = droppedItem.parentNode;
 
-      // Swap the elements
-      const temp = document.createElement('div');
-      parent.insertBefore(temp, draggedItem);
-      parent.insertBefore(draggedItem, droppedItem);
-      parent.insertBefore(droppedItem, temp);
-      parent.removeChild(temp);
+//       // Swap the elements
+//       const temp = document.createElement('div');
+//       parent.insertBefore(temp, draggedItem);
+//       parent.insertBefore(draggedItem, droppedItem);
+//       parent.insertBefore(droppedItem, temp);
+//       parent.removeChild(temp);
 
-      // Update the positions in local storage
-      const items = JSON.parse(localStorage.getItem('list'));
-      const draggedIndex = Array.from(parent.children).indexOf(draggedItem);
-      const droppedIndex = Array.from(parent.children).indexOf(droppedItem);
-      const tempItem = items[draggedIndex];
-      items[draggedIndex] = items[droppedIndex];
-      items[droppedIndex] = tempItem;
-      localStorage.setItem('list', JSON.stringify(items));
-    });
-  });
-}
+//       // Update the positions in local storage
+//       const items = JSON.parse(localStorage.getItem('list'));
+//       const draggedIndex = Array.from(parent.children).indexOf(draggedItem);
+//       const droppedIndex = Array.from(parent.children).indexOf(droppedItem);
+//       const tempItem = items[draggedIndex];
+//       items[draggedIndex] = items[droppedIndex];
+//       items[droppedIndex] = tempItem;
+//       localStorage.setItem('list', JSON.stringify(items));
+//     });
+//   });
+// }
 
-
+//checkbox and strikethrough 
 const checkCurrent = (e)=>{
   const label = e.currentTarget;
   label.classList.toggle('checkActive');

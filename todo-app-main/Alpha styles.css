@@ -23,7 +23,7 @@
 }
 
 body{
-  background: hsl(235, 21%, 11%);
+  
 
  display: flex;
  flex-direction: column;
@@ -33,8 +33,8 @@ height: 100vh;
 
 body.light{
   background-color: var( --objBackgrounds);
---bg:hsla(0, 0%, 100%, 1);
-    --fontColor:hsl(235, 19%, 35%); 
+--bg:#f2f2f2;
+    --fontColor:hsla(235, 19%, 35%, 1); 
     --fontColorGray:hsl(233, 11%, 84%);
     --fontColorGrayHover:hsl(236, 9%, 61%);
     --headerBg:url(./images/bg-desktop-light.jpg);
@@ -155,11 +155,7 @@ body.light{
   margin-right: 20px;
 
 }
-#checkInput{
-  position: absolute;
-  left: 50px;
-  opacity: 0;
-}
+
 .checkboxLabel{
   position: absolute;
   width: 20px;
@@ -183,9 +179,6 @@ body.light{
 
 .checkboxLabel.checkActive{
   border: none;
-  background: url(./images/Group\ 4.svg);
-  background-color:color-mix(in srgb, hsl(192, 100%, 67%), hsl(280, 87%, 65%) );
-  transform: scale(1.2);
   size: 10px;
   background-size: cover; 
   background-position: center;
@@ -202,7 +195,7 @@ body.light{
   padding: 10px 0px;
   background-color: var(--bg);
   color: var(--fontColor);
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
 .boxContainer{
@@ -211,7 +204,7 @@ body.light{
   height: auto;
   border-radius: 3px;
   box-shadow: 0px 20px 10px -5px var(--boxShadow);
-  z-index: -1;
+  z-index: 0;
   background-color: var(--objBackgrounds);
   
 }
