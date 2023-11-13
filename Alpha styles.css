@@ -2,9 +2,9 @@
 
 :root{
   --bg:hsl(229, 26%, 16%);
-  --fontColor:hsl(236, 33%, 92%);
+  --fontColor:#C8CBE7;
   --fontColorGray:hsl(237, 14%, 26%);
-  --fontColorGrayHover:hsl(236, 33%, 92%);
+  --fontColorGrayHover:hsl(240, 2%, 76%);
   --headerBg:url(./images/bg-desktop-dark.jpg);
   --headerSs:url(./images/bg-mobile-dark.jpg);
   --btnToggleImg: url(./images/icon-sun.svg);
@@ -19,7 +19,7 @@
    box-sizing: border-box; 
    padding: 0;
    margin: 0;
-   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+   font-family:'Josefin Sans', 'Arial Narrow', Arial, sans-serif;
 }
 
 body{
@@ -34,7 +34,7 @@ height: 100vh;
 body.light{
   background-color: var( --objBackgrounds);
 --bg:hsla(0, 0%, 100%, 1);
-    --fontColor:hsl(235, 19%, 35%); 
+    --fontColor:#494C6B; 
     --fontColorGray:hsl(233, 11%, 84%);
     --fontColorGrayHover:hsl(236, 9%, 61%);
     --headerBg:url(./images/bg-desktop-light.jpg);
@@ -141,9 +141,10 @@ body.light{
   height: 4rem;
   padding: 10px 10px;
   align-items: center;
-  background-color: var(--bg);
+  background-color: var(--objBackgrounds);
   border-radius: 5px;
   margin-bottom: 30px;
+  
 }
 
 
@@ -189,6 +190,7 @@ body.light{
   size: 10px;
   background-size: cover; 
   background-position: center;
+  
 }
 
 
@@ -200,7 +202,7 @@ body.light{
   border: none;
   outline: none;
   padding: 10px 0px;
-  background-color: var(--bg);
+  background-color: var(--objBackgrounds);
   color: var(--fontColor);
   cursor: pointer;
 }
@@ -235,6 +237,10 @@ body.light{
 
 .liHighlight{
   background: var(--highLight);
+}
+
+.list-items{
+  color: var(--fontColor);
 }
 
 .item-info{
@@ -273,7 +279,7 @@ display: flex;
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  background: var(--bg);
+  background: var(--objBackgrounds);
   padding: 0 10px;
 }
 
@@ -295,7 +301,7 @@ display: flex;
     top:30%;
     left: 50%;
     transform: translate(-50%); 
-    background: var(--bg);
+    background: var(--objBackgrounds);
 }
 
 .center-items{

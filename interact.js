@@ -14,10 +14,10 @@ document.querySelector('.themeToggle').addEventListener('click', () => {
 let selectedLink = document.getElementById("all");
 selectedLink.style.color = defaultColor;
 
-  // Add click event listeners to all the links
+    // Reset the font color of the previously selected link
  links.forEach(function(link) {
   link.addEventListener("click", function() {
-    // Reset the font color of the previously selected link
+  
     if (selectedLink !== link) {
       selectedLink.style.color = previousColor;
     }
@@ -45,6 +45,7 @@ const completed = document.getElementById('clearCompleted');
 
 const leftItem = document.getElementById('sides-value');
 
+// fn for clr completed
 completed.addEventListener('click',()=>{
   document.querySelectorAll('.checkInput').forEach(checkBox=>{
       if (checkBox.checked){
@@ -59,13 +60,13 @@ activeClass.forEach(anchor => {
   anchor.addEventListener('click',(e)=>{
       e.currentTarget.href = '#';
        e.preventDefault();
-     if(e.currentTarget.id === 'all') {
+     if(e.currentTarget.id == 'all') {
          e.currentTarget.href = '/';
        document.querySelectorAll('.checkInput').forEach(checkBox=>{
            checkBox.parentElement.parentElement.style.display = 'flex'; 
        });
      }
-     if(e.currentTarget.id === 'active') {
+     if(e.currentTarget.id == 'active') {
        e.currentTarget.href = '/';
        document.querySelectorAll('.checkInput').forEach(checkBox=>{
            checkBox.parentElement.parentElement.style.display = 'flex';
@@ -77,7 +78,8 @@ activeClass.forEach(anchor => {
            }
        });
      }
-      if(e.currentTarget.id === 'completed') {
+
+      if(e.currentTarget.id == 'completed') {
        e.currentTarget.href = '/';
        document.querySelectorAll('.checkInput').forEach(checkBox=>{
            checkBox.parentElement.parentElement.style.display = 'flex';
@@ -88,10 +90,13 @@ activeClass.forEach(anchor => {
                checkBox.parentElement.parentElement.style.display = 'none';
            }
        });
+
+       
        }
   });
 });
 
+//fn to count items left
 const checkLeftItem = () =>{
   let totalItem = listParent.children.length;
   let count = 0;
@@ -119,7 +124,7 @@ const setBackToDefault = () =>{
   formValue.value = '';
 };
 
-//creating form event liseterner
+//creating form event listener
 formIinputContainer.addEventListener('submit',(e)=>{
   e.preventDefault(); //preventing submitting automatically
   const id = new Date().getTime().toString();
@@ -140,9 +145,10 @@ const createTodoItem = (id, value) => {
   const element = document.createElement('li');
   element.classList.add('list-infos');
   element.setAttribute('id', id);
+  
   //check eligibility before submitting
   element.classList.add('draggable');
-  element.setAttribute('draggable', false);
+  element.setAttribute('draggable', true);
 
   element.innerHTML = `
     <div class="checkboxContainer">
@@ -158,6 +164,7 @@ const createTodoItem = (id, value) => {
 
   listParent.insertBefore(element, listParent.firstChild);
 
+  // removing and adding list depending on functionality .
   const labels = document.querySelectorAll('.checkboxLabel');
   const close = document.querySelectorAll('.close-container svg');
 
@@ -168,54 +175,58 @@ const createTodoItem = (id, value) => {
   for (let i = 0; i < close.length; i++) {
     close[i].addEventListener('click', RemoveCurrent);
   }
+
 };
+
+
+// Drag and Dropo functionalities
 
 let dragindex=0;
 let dropindex=0;
 let clone="";
 
-// function setupDragAndDrop() {
-//   const listItems = document.querySelectorAll('.list-infos');
+ function setupDragAndDrop() {
+  const listItems = document.querySelectorAll('.list-infos');
 
-//   let draggedItem = null;
+   let draggedItem = null;
 
-//   listItems.forEach((item) => {
-//     item.setAttribute('draggable', true);
+   listItems.forEach((item) => {
+     item.setAttribute('draggable', true);
 
-//     item.addEventListener('dragstart', (event) => {
-//       draggedItem = event.currentTarget;
-//       event.dataTransfer.effectAllowed = 'move';
-//       event.dataTransfer.setData('text/html', draggedItem);
-//     });
+     item.addEventListener('dragstart', (event) => {
+       draggedItem = event.currentTarget;
+       event.dataTransfer.effectAllowed = 'move';
+       event.dataTransfer.setData('text/html', draggedItem);
+     });
 
-//     item.addEventListener('dragover', (event) => {
-//       event.preventDefault();
-//       event.dataTransfer.dropEffect = 'move';
-//     });
+     item.addEventListener('dragover', (event) => {
+       event.preventDefault();
+       event.dataTransfer.dropEffect = 'move';
+     });
 
-//     item.addEventListener('drop', (event) => {
-//       event.preventDefault();
-//       const droppedItem = event.currentTarget;
-//       const parent = droppedItem.parentNode;
+     item.addEventListener('drop', (event) => {
+       event.preventDefault();
+       const droppedItem = event.currentTarget;
+       const parent = droppedItem.parentNode;
 
-//       // Swap the elements
-//       const temp = document.createElement('div');
-//       parent.insertBefore(temp, draggedItem);
-//       parent.insertBefore(draggedItem, droppedItem);
-//       parent.insertBefore(droppedItem, temp);
-//       parent.removeChild(temp);
+       // Swap the elements
+       const temp = document.createElement('div');
+       parent.insertBefore(temp, draggedItem);
+       parent.insertBefore(draggedItem, droppedItem);
+       parent.insertBefore(droppedItem, temp);
+       parent.removeChild(temp);
 
-//       // Update the positions in local storage
-//       const items = JSON.parse(localStorage.getItem('list'));
-//       const draggedIndex = Array.from(parent.children).indexOf(draggedItem);
-//       const droppedIndex = Array.from(parent.children).indexOf(droppedItem);
-//       const tempItem = items[draggedIndex];
-//       items[draggedIndex] = items[droppedIndex];
-//       items[droppedIndex] = tempItem;
-//       localStorage.setItem('list', JSON.stringify(items));
-//     });
-//   });
-// }
+       // Update the positions in local storage
+       const items = JSON.parse(localStorage.getItem('list'));
+       const draggedIndex = Array.from(parent.children).indexOf(draggedItem);
+       const droppedIndex = Array.from(parent.children).indexOf(droppedItem);
+       const tempItem = items[draggedIndex];
+       items[draggedIndex] = items[droppedIndex];
+       items[droppedIndex] = tempItem;
+       localStorage.setItem('list', JSON.stringify(items));
+     });
+   });
+ }
 
 //checkbox and strikethrough 
 const checkCurrent = (e)=>{
@@ -231,13 +242,12 @@ const checkCurrent = (e)=>{
   }
   else{
       label.parentElement.nextElementSibling.style.textDecoration = 'none';
-      label.parentElement.nextElementSibling.style.color =isLight ? '#494C6B' : '#C8CBE7';
-      label.previousElementSibling.checked = false;
+     
   }
   checkLeftItem();
 };
 
-
+// list on local storage
 const RemoveCurrent = (e) =>{
   const parentContainer = e.currentTarget.parentElement.parentElement;
   const id = parentContainer.id;
@@ -247,6 +257,7 @@ const RemoveCurrent = (e) =>{
   checkLeftItem();
   setBackToDefault();
 };
+
 
 const removeFromLocalStorage = (id)=>{
   let items = getLocalStorage();
